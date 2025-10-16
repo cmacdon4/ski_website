@@ -11,6 +11,7 @@ export default function Team() {
 
   useEffect(() => {
     let mounted = true;
+
     (async () => {
       try {
         const data = await getTeam();
@@ -22,29 +23,25 @@ export default function Team() {
         if (mounted) setLoading(false);
       }
     })();
+
     return () => {
       mounted = false;
     };
   }, []);
 
   return (
-    // Map "team-section" to styles.teamSection. 'main' likely comes from global CSS.
     <main className={styles.teamSection}>
       <h1>Meet the Team</h1>
       <h2>The Exec Board</h2>
 
-      {/* 'container' is likely a global utility class, so we leave it as a string */}
       {loading && <p className="container">Loading team…</p>}
       {err && (
-        // 'container' is likely global. Note: Inline styles are fine, but
-        // a scoped error class in the module is a cleaner solution.
         <p className="container" style={{ color: "#b00020" }}>
           {err}
         </p>
       )}
 
       {!loading && !err && (
-        // Map "team-grid" to styles.teamGrid
         <div className={styles.teamGrid}>
           {members.map((m) => (
             <TeamMemberCard key={m.id ?? `${m.name}-${m.role}`} member={m} />

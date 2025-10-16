@@ -2,17 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
 
-import Logo from "../../img/No_text_logo.jpg"
+import Logo from "../../img/No_text_logo.jpg";
 
 export default function Navbar() {
   return (
     <nav className={styles.navbar}>
       <div className={styles.navbarInner}>
         <a className={styles.brand} href="/">
-          <img
-            src={Logo}
-            alt="ND Ski"
-          />
+          <img src={Logo} alt="ND Ski" />
           <span>ND Ski & Snowboard</span>
         </a>
         <ul className={styles.nav}>
@@ -45,6 +42,16 @@ export default function Navbar() {
               }
             >
               The Team
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/trips"
+              className={({ isActive }) =>
+                isActive ? styles.active : undefined
+              }
+            >
+              Our Trips
             </NavLink>
           </li>
           <li>
