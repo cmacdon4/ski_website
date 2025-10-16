@@ -1,41 +1,58 @@
-/* ====== BASE / GLOBAL ====== */
+/* ====== BASE / GLOBAL STYLES ====== */
+/* Global CSS reset and base styles for the entire application */
+
+/* Universal box-sizing for consistent layout calculations */
 * {
-  box-sizing: border-box;
+  box-sizing: border-box; /* Include padding and border in element width calculations */
 }
+
+/* Full height setup for proper layout */
 html,
 body {
-  height: 100%;
+  height: 100%; /* Ensure full viewport height */
 }
+
+/* Body styling with Notre Dame color scheme */
 body {
-  margin: 0;
-  background-color: #ffff;
-  font-family: "Lora", serif;
-  color: #0b233c;
+  margin: 0; /* Remove default browser margins */
+  background-color: #ffff; /* Clean white background */
+  font-family: "Lora", serif; /* Primary serif font for body text */
+  color: #0b233c; /* Notre Dame blue color for text */
 }
+
+/* Heading styles using Roboto font for modern look */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: "Roboto", sans-serif;
-  text-align: center;
-  margin: 0 0 10px;
+  font-family: "Roboto", sans-serif; /* Sans-serif font for headings */
+  text-align: center; /* Center all headings for consistency */
+  margin: 0 0 10px; /* Consistent bottom margin for spacing */
 }
+
+/* Paragraph styling for readability */
 p {
-  margin: 0 0 10px;
-  line-height: 1.6;
+  margin: 0 0 10px; /* Consistent bottom margin */
+  line-height: 1.6; /* Improved line spacing for readability */
 }
+
+/* Responsive image handling */
 img {
-  display: block;
-  max-width: 100%;
-  height: auto;
+  display: block; /* Remove inline spacing */
+  max-width: 100%; /* Prevent images from overflowing containers */
+  height: auto; /* Maintain aspect ratio */
 }
+
+/* Main content area spacing */
 main {
-  padding-bottom: 60px;
+  padding-bottom: 60px; /* Bottom padding to prevent content cutoff */
 }
+
+/* Container utility class for consistent page width */
 .container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
+  max-width: 1100px; /* Maximum content width for readability */
+  margin: 0 auto; /* Center container horizontally */
+  padding: 0 20px; /* Horizontal padding for mobile responsiveness */
 }
