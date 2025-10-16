@@ -1,0 +1,4 @@
+{
+  "location": { "name": "Notre Dame" },
+  "current": { "temp_c": 20, "condition": { "text": "Partly cloudy" } }
+}

@@ -1,0 +1,41 @@
+/* ====== BASE / GLOBAL ====== */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background-color: #ffff;
+  font-family: "Lora", serif;
+  color: #0b233c;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  margin: 0 0 10px;
+}
+p {
+  margin: 0 0 10px;
+  line-height: 1.6;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+main {
+  padding-bottom: 60px;
+}
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}

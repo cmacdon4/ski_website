@@ -1,0 +1,32 @@
+[
+  {
+    "id": "abby",
+    "name": "Abby Jones",
+    "role": "Co President",
+    "image": "/img/exec-team/abby.JPG"
+  },
+  {
+    "id": "connor",
+    "name": "Connor MacDonald",
+    "role": "Co President",
+    "image": "/img/exec-team/cmac.jpg"
+  },
+  {
+    "id": "henry",
+    "name": "Henry Shea",
+    "role": "Treasurer",
+    "image": "/img/exec-team/henry.jpg"
+  },
+  {
+    "id": "julian",
+    "name": "Julian Mestousis",
+    "role": "Co Vice President",
+    "image": "/img/exec-team/julian2.jpg"
+  },
+  {
+    "id": "liv",
+    "name": "Liv Bradley",
+    "role": "Co Vice President",
+    "image": "/img/exec-team/liv.jpg"
+  }
+]
