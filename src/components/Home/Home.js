@@ -1,9 +1,6 @@
 import React from "react";
 import styles from "./Home.module.css"; // CSS modules for component styling
 
-// Import weather widget component
-import WeatherWidget from "../Weather/WeatherWidget";
-
 // Import images as modules for webpack bundling
 import logo from "../../img/No_text_logo.jpg" // Club logo
 import trip1 from "../../img/sam.png"; // my friend sam
@@ -51,10 +48,6 @@ export default function Home() {
         <img src={trip2} alt="Ski Trip 2" /> {/* Mountain summit photo */}
         <img src={trip3} alt="Ski Trip 3" /> {/* Night skiing photo */}
       </section>
-
-      <div id="weather"> {/* Weather widget container */}
-        <WeatherWidget />
-      </div>
     </main>
   );
 }
