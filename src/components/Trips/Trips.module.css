@@ -8,10 +8,10 @@
   .cardContainer {
     display: flex;
     justify-content: center;
-    align-items: stretch; /* ✅ makes both cards same height */
+    align-items: stretch;
     gap: 40px;
     flex-wrap: wrap;
-    max-width: 900px; /* ✅ controls total width for alignment */
+    max-width: 900px; 
     margin: 0 auto; /* center horizontally */
   }
   
@@ -26,8 +26,8 @@
     text-align: left;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* ✅ ensures full height content */
-    min-height: 360px; /* ✅ prevents shorter card collapse */
+    justify-content: space-between; 
+    min-height: 360px;
   }
   
   .locationImage {
@@ -56,8 +56,8 @@
   
   /* 🗺️ Map styling — same width as cards + spacing */
   .mapWrapper {
-    margin-top: 50px; /* ✅ space between cards and map */
-    max-width: 900px; /* ✅ same as cardContainer */
+    margin-top: 50px;
+    max-width: 900px;
     margin-left: auto;
     margin-right: auto;
     background: white;

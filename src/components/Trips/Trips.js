@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Trips.module.css";
-import { getLocations } from "../../services/locationService";
 import TripsMap from "./TripsMap";
+import { getAllLocations } from "../../models/Location";
+
 
 export default function Trips() {
   const [locations, setLocations] = useState([]);
@@ -12,7 +13,7 @@ export default function Trips() {
   useEffect(() => {
     (async () => {
       try {
-        const data = await getLocations();
+        const data = await getAllLocations();
         setLocations(data);
         if (data.length > 0) setSelectedLocation(data[0]);
       } catch (e) {

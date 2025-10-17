@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Team.module.css";
-
-import { getTeam } from "../../services/teamService";
+import { getTeamMembers } from "../../models/Team";
 import TeamMemberCard from "./TeamMemberCard";
 
 export default function Team() {
@@ -10,23 +9,16 @@ export default function Team() {
   const [err, setErr] = useState("");
 
   useEffect(() => {
-    let mounted = true;
-
     (async () => {
       try {
-        const data = await getTeam();
-        if (!Array.isArray(data)) throw new Error("Bad team.json shape");
-        if (mounted) setMembers(data);
+        const data = await getTeamMembers();
+        setMembers(data);
       } catch (e) {
-        if (mounted) setErr("Could not load team.json.");
+        setErr("Could not load team data.");
       } finally {
-        if (mounted) setLoading(false);
+        setLoading(false);
       }
     })();
-
-    return () => {
-      mounted = false;
-    };
   }, []);
 
   return (
@@ -44,7 +36,7 @@ export default function Team() {
       {!loading && !err && (
         <div className={styles.teamGrid}>
           {members.map((m) => (
-            <TeamMemberCard key={m.id ?? `${m.name}-${m.role}`} member={m} />
+            <TeamMemberCard key={m.id} member={m} />
           ))}
         </div>
       )}
