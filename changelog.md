@@ -18,5 +18,19 @@
 - Incorrect pointer direction in UML diagram
 
 ### Notes
-Feature 4 completes the requirement:
-> “All Parse queries outside of controllers/components and inside of Parse Models.”
+Feature 4 completes the necessary requirements
+
+## [0.3.0] – 2025-11-06
+### Added
+- Implemented Feature 5 (Authentication, Navbar/Logout, Footer, and Calendar integration)
+- Added AuthLogin and AuthRegister pages with modernized styling and validation
+- Added ProtectedRoute component for authenticated-only routes
+- Added Calendar page with embedded Google Calendar and restricted access for logged-in users
+- Added Footer component with LinkedIn, Instagram, and email links using Lucide icons
+- Added @nd.edu email domain validation in registration
+- Added password requirements (min. 6 chars, one uppercase, one number)
+- Added automatic login and redirect to home upon successful registration
+- Added profile icon to Navbar with dynamic state (Login/Register vs. Profile/Logout)
+
+### Notes
+Feature 5 completes the necessary requirements
