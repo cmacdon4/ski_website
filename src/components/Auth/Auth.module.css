@@ -1,0 +1,116 @@
+/* ===== AUTH ===== */
+.authContainer {
+    background: #ffffff; /* Full page background */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+  
+  /* Navy card */
+  .authBox {
+    background: #0b233c;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    width: 100%;
+    max-width: 420px;
+    padding: 40px 32px;
+    text-align: center;
+  }
+  
+  /* Typography */
+  .authTitle {
+    font-family: "Roboto", sans-serif;
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+  }
+  
+  .authSubtitle {
+    font-family: "Lora", serif;
+    color: #dbe4f0;
+    margin-bottom: 28px;
+  }
+  
+  /* Form */
+  .authForm {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .authForm label {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #ffffff;
+  }
+  
+  .authForm input[type="text"],
+  .authForm input[type="email"],
+  .authForm input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    font-size: 1rem;
+    margin-bottom: 14px;
+    font-family: "Roboto", sans-serif;
+    color: #0b233c;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  
+  .authForm input:focus {
+    outline: none;
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+  }
+  
+  /* Buttons */
+  .authButton {
+    display: inline-block;
+    background: #1a73e8;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: "Roboto", sans-serif;
+    margin-top: 8px;
+    transition: background 0.2s ease;
+  }
+  
+  .authButton:hover {
+    background: #0b4dab;
+  }
+  
+  /* Register prompt */
+  .registerPrompt {
+    font-family: "Roboto", sans-serif;
+    font-size: 0.9rem;
+    color: #dbe4f0;
+    margin-top: 20px;
+  }
+  
+  .registerLink {
+    color: #66aaff;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 4px;
+    transition: color 0.2s ease;
+  }
+  
+  .registerLink:hover {
+    color: #ffffff;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .authBox {
+      padding: 30px 20px;
+    }
+  }
+  

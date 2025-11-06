@@ -28,26 +28,28 @@ export default function Home() {
         </a>
       </section>
 
-      <section className={styles.highlights}> {/* Statistics highlights section */}
-        <div className={styles.highlightCard}> {/* Member count card */}
-          <h2>100+</h2>
-          <p>Active Members</p>
-        </div>
-        <div className={styles.highlightCard}> {/* Racing program card */}
-          <h2>Racing</h2>
-          <p>Alpine Events</p>
-        </div>
-        <div className={styles.highlightCard}> {/* Trip destinations card */}
-          <h2>Trips</h2>
-          <p>Midwest &amp; West Coast</p>
-        </div>
-      </section>
+      <div className={styles.contentWrapper}>
+        <section className={styles.highlights}>
+          <div className={styles.highlightCard}>
+            <h2>100+</h2>
+            <p>Active Members</p>
+          </div>
+          <div className={styles.highlightCard}>
+            <h2>Racing</h2>
+            <p>Alpine Events</p>
+          </div>
+          <div className={styles.highlightCard}>
+            <h2>Trips</h2>
+            <p>Midwest & West Coast</p>
+          </div>
+        </section>
 
-      <section className={styles.carousel}> {/* Photo gallery section */}
+        <section className={styles.carousel}>
         <img src={trip1} alt="Ski Trip 1" /> {/* Ski lift photo */}
         <img src={trip2} alt="Ski Trip 2" /> {/* Mountain summit photo */}
         <img src={trip3} alt="Ski Trip 3" /> {/* Night skiing photo */}
-      </section>
+        </section>
+      </div>
     </main>
   );
 }

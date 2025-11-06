@@ -1,0 +1,24 @@
+.calendarContainer {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+    text-align: center;
+  }
+  
+  .title {
+    font-family: "Roboto", sans-serif;
+    color: #0b233c;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Ensure iframe is centered and wide */
+  .calendarFrame {
+    width: 100%;
+    max-width: 1100px;
+    height: 800px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+  

@@ -6,41 +6,52 @@
   z-index: 1000;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
+
 .navbarInner {
   max-width: 1100px;
   margin: 0 auto;
   padding: 10px 16px;
   display: flex;
-  align-items: center;
+  align-items: center; /* centers brand, links, and icon */
+  justify-content: space-between;
   gap: 18px;
 }
+
+/* ===== Brand Section ===== */
 .brand {
   display: flex;
   align-items: center;
   gap: 10px;
   text-decoration: none;
 }
+
 .brand img {
   width: 36px;
   height: 36px;
   object-fit: cover;
   border-radius: 6px;
+  display: block;
 }
+
 .brand span {
   color: #fff;
   font-family: "Roboto", sans-serif;
   font-weight: 700;
   letter-spacing: 0.4px;
+  font-size: 1.05rem;
+  transform: translateY(1px); /* slight visual alignment tweak */
 }
+
+/* ===== Nav Links ===== */
 .nav {
   display: flex;
+  align-items: center; /* aligns links with profile icon */
   gap: 20px;
-  margin-left: auto;
   list-style: none;
+  margin: 0;
   padding: 0;
-  margin-top: 0;
-  margin-bottom: 0;
 }
+
 .nav a {
   color: #d8e6ff;
   text-decoration: none;
@@ -50,24 +61,124 @@
   border-radius: 8px;
   transition: background 0.2s ease, color 0.2s ease;
 }
+
 .nav a:hover {
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
 }
+
 .active {
-  /* This class is applied to the <a> tag */
   background: #184372;
   color: #fff;
 }
 
-/* ====== RESPONSIVE (NAVBAR) ====== */
+/* ===== Profile Icon ===== */
+.profileWrapper {
+  position: relative;
+}
+
+.profileButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(1px); /* fine-tune vertical alignment */
+}
+
+.profileIcon {
+  width: 28px;
+  height: 28px;
+  color: #ffffff; /* white icon on navy background */
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.profileButton:hover .profileIcon {
+  opacity: 0.85;
+  transform: scale(1.05);
+}
+
+/* ===== Dropdown Menu ===== */
+.dropdownMenu {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #0b233c;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  min-width: 130px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dropdownUser {
+  color: #d8e6ff;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  margin: 0;
+}
+
+.dropdownItem {
+  background: transparent;
+  border: none;
+  color: #d8e6ff;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
+  border-radius: 6px;
+  padding: 5px 8px;
+}
+
+.dropdownItem:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* ===== Responsive ===== */
 @media (max-width: 700px) {
   .navbarInner {
     flex-wrap: wrap;
   }
+
   .nav {
     margin-left: 0;
     width: 100%;
     justify-content: center;
   }
+
+  .profileButton {
+    margin-top: 6px;
+  }
 }
+
+.profileLabel {
+  display: block;
+  font-size: 0.65rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  color: #d8e6ff;
+  margin-top: 2px;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.profileButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  display: flex;
+  flex-direction: column; /* stack icon + label vertically */
+  align-items: center;
+  justify-content: center;
+  transform: translateY(1px);
+}
+
