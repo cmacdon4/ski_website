@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   try {
     // Send the email
     await resend.emails.send({
-      from: "ND Ski Website <noreply@ndski.com>", 
+      from: "ND Ski Website <onboarding@resend.dev>", 
       // You can use "onboarding@resend.dev" in sandbox mode
       to: "ndski@nd.edu",  
       subject: `New Contact Form Submission: ${subject || "General"}`,
