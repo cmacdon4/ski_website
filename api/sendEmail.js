@@ -23,7 +23,7 @@ export default async function handler(req, res) {
     await resend.emails.send({
       from: "ND Ski Website <onboarding@resend.dev>", 
       // You can use "onboarding@resend.dev" in sandbox mode
-      to: "ndski@nd.edu",  
+      to: "cmacdon4@nd.edu",  
       subject: `New Contact Form Submission: ${subject || "General"}`,
       html: `
         <h2>New Contact Form Submission</h2>
