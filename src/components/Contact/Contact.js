@@ -1,60 +1,103 @@
-import React, { useState } from "react"; // useState hook for form state management
-import styles from "./Contact.module.css"; // CSS modules for component styling
+import React, { useState } from "react";
+import Parse from "../../parseConfig";
+import styles from "./Contact.module.css";
 
 export default function Contact() {
-  // Form state object to track all input values
   const [form, setForm] = useState({
     name: "",
     email: "",
-    message: "",
     subject: "General",
+    message: "",
   });
 
-  // Generic handler to update form state when inputs change
-  const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const [loading, setLoading] = useState(false);
 
-  // Handle form submission with basic validation
-  const onSubmit = (e) => {
-    e.preventDefault(); // Prevent page refresh
-    alert(
-      `Thanks, ${form.name}! We received your message about "${form.subject}".\n\n${form.message}`
-    );
+  const onChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      // ----------------------------
+      // 1. Save to Parse
+      // ----------------------------
+      const ContactMessage = Parse.Object.extend("ContactMessage");
+      const msg = new ContactMessage();
+
+      msg.set("name", form.name);
+      msg.set("email", form.email);
+      msg.set("subject", form.subject);
+      msg.set("message", form.message);
+
+      const user = Parse.User.current();
+      if (user) msg.set("user", user);
+
+      await msg.save();
+
+      // ----------------------------
+      // 2. Send email through API
+      // ----------------------------
+      const res = await fetch("/api/sendEmail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) {
+        console.error("Email API error:", await res.text());
+        throw new Error("Email failed to send");
+      }
+
+      // Success Message
+      alert("Message sent! We’ll get back to you soon.");
+
+      // Reset form
+      setForm({
+        name: "",
+        email: "",
+        subject: "General",
+        message: "",
+      });
+
+    } catch (err) {
+      console.error("Contact form error:", err);
+      alert("Something went wrong — please try again later.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <main>
-      <div className={styles.contactGrid}> {/* Two-column layout container */}
-        <div className={styles.contactCard}> {/* Left column: contact information */}
+      <div className={styles.contactGrid}>
+        <div className={styles.contactCard}>
           <h2>Contact Us</h2>
-          <p className={styles.contactInfo}> {/* Email contact link */}
+          <p className={styles.contactInfo}>
             Email: <a href="mailto:ndski@nd.edu">ndski@nd.edu</a>
           </p>
-          <p className={styles.contactInfo}> {/* Instagram social link */}
+          <p className={styles.contactInfo}>
             Instagram:{" "}
-            <a
-              href="https://www.instagram.com/ndskiclub/"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href="https://www.instagram.com/ndskiclub/"
+               target="_blank" rel="noreferrer">
               @ndskiclub
             </a>
           </p>
-          <p className={styles.contactInfo}> {/* Placeholder for GroupMe link */}
-            GroupMe: {" "}
-            <a
-              href="https://groupme.com/join_group/96582520/YCi5xE1y"
-              target="_blank"
-              rel="noreferrer"
-            >
+          <p className={styles.contactInfo}>
+            GroupMe:{" "}
+            <a href="https://groupme.com/join_group/96582520/YCi5xE1y"
+               target="_blank" rel="noreferrer">
               Ski Events
             </a>
           </p>
         </div>
 
-        <div className={styles.contactFormContainer}> {/* Right column: contact form */}
+        <div className={styles.contactFormContainer}>
           <h3>Send a Message</h3>
-          <form className={styles.contactForm} onSubmit={onSubmit} noValidate> {/* Contact form with validation */}
-            <label htmlFor="name">Name</label> {/* Name input field */}
+
+          <form className={styles.contactForm} onSubmit={onSubmit} noValidate>
+            <label htmlFor="name">Name</label>
             <input
               id="name"
               type="text"
@@ -64,7 +107,7 @@ export default function Contact() {
               required
             />
 
-            <label htmlFor="email">Email</label> {/* Email input field */}
+            <label htmlFor="email">Email</label>
             <input
               id="email"
               type="email"
@@ -76,7 +119,7 @@ export default function Contact() {
               placeholder="name@nd.edu"
             />
 
-            <label htmlFor="subject">Subject</label> {/* Subject dropdown */}
+            <label htmlFor="subject">Subject</label>
             <select
               id="subject"
               name="subject"
@@ -89,7 +132,7 @@ export default function Contact() {
               <option>Membership</option>
             </select>
 
-            <label htmlFor="message">Message</label> {/* Message textarea */}
+            <label htmlFor="message">Message</label>
             <textarea
               id="message"
               name="message"
@@ -99,7 +142,12 @@ export default function Contact() {
               required
             />
 
-            <input type="submit" value="Send" aria-label="Send message" /> {/* Submit button */}
+            <input
+              type="submit"
+              value={loading ? "Sending..." : "Send"}
+              disabled={loading}
+              aria-label="Send message"
+            />
           </form>
         </div>
       </div>
