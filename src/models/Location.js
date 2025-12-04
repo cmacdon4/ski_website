@@ -1,5 +1,4 @@
 import Parse from "../parseConfig";
-import Weather, { parseWeather } from "./Weather";
 
 const Location = Parse.Object.extend("Location");
 
@@ -13,7 +12,6 @@ export const parseLocation = (obj) => ({
   summit: obj.get("Summit"),
   countryFlag: obj.get("countryFlag"),
   websiteUrl: obj.get("websiteUrl"),
-  weather: obj.get("Weather") ? parseWeather(obj.get("Weather")) : null,
 });
 
 export async function getAllLocations() {

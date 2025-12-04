@@ -3,13 +3,32 @@ import styles from "./Trips.module.css";
 import TripsMap from "./TripsMap";
 import { getAllLocations } from "../../models/Location";
 
+import { fetchOpenMeteoWeather } from "../../services/fetchOpenMeteo";
 
 export default function Trips() {
   const [locations, setLocations] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
+  const [liveWeather, setLiveWeather] = useState(null);
 
+  // Fetch live weather when selectedLocation changes
+  useEffect(() => {
+    if (!selectedLocation?.coords) return;
+
+    (async () => {
+      try {
+        const { latitude, longitude } = selectedLocation.coords;
+        const live = await fetchOpenMeteoWeather(latitude, longitude);
+        setLiveWeather(live);
+      } catch (e) {
+        console.error("Live weather failed", e);
+        setLiveWeather(null);
+      }
+    })();
+  }, [selectedLocation]);
+
+  // Load all resort locations
   useEffect(() => {
     (async () => {
       try {
@@ -56,7 +75,7 @@ export default function Trips() {
       {selectedLocation && (
         <>
           <div className={styles.cardContainer}>
-            {/* Left Card: Location Info */}
+            {/* ----- Left Card: Location Info ----- */}
             <div className={styles.locationCard}>
               {selectedLocation.imageUrl && (
                 <img
@@ -65,47 +84,69 @@ export default function Trips() {
                   className={styles.locationImage}
                 />
               )}
-              <h2>{selectedLocation.name} {selectedLocation.countryFlag}</h2>
+
+              <h2>
+                {selectedLocation.name} {selectedLocation.countryFlag}
+              </h2>
+
               <p>{selectedLocation.region}</p>
               <p>{selectedLocation.description}</p>
               <p>
-                Altitude: {selectedLocation.altitude} m | Summit:{" "}
-                {selectedLocation.summit} m
+                Altitude: {selectedLocation.altitude} ft | Summit:{" "}
+                {selectedLocation.summit} ft
               </p>
+
               <a
                 href={selectedLocation.websiteUrl}
                 target="_blank"
                 rel="noreferrer"
               >
-                Visit Resort Website
+                Visit Website
               </a>
             </div>
 
-            {/* Right Card: Weather Info */}
+            {/* ----- Right Card: Weather Info ----- */}
             <div className={styles.weatherCard}>
               <h3>Current Weather</h3>
-              {selectedLocation.weather ? (
+
+              {liveWeather ? (
+                <>
+                <div className={styles.conditionRow}>
+                  <span className={styles.weatherText}>
+                    {liveWeather.condition}:
+                  </span>
+                  <img
+                    src={liveWeather.iconURL}
+                    alt={liveWeather.condition}
+                    className={styles.weatherIcon}
+                  />
+                </div>
+
+                <p className={styles.weatherText}>
+                  Temperature: {liveWeather.temperature}°F
+                </p>
+
+                <p className={styles.weatherText}>
+                  Wind: {liveWeather.windSpeed} mph
+                </p>
+
+                <p className={styles.weatherText}>
+                  Humidity: {liveWeather.humidity}%
+                </p>
+                </>
+              ) : selectedLocation.weather ? (
                 <>
                   <img
                     src={selectedLocation.weather.iconURL}
                     alt={selectedLocation.weather.condition}
                     className={styles.weatherIcon}
                   />
-                  <p className={styles.weatherCondition}>
-                    {selectedLocation.weather.condition}
-                  </p>
+                  <p>{selectedLocation.weather.condition}</p>
                   <p>
                     Temperature: {selectedLocation.weather.temperature}°F
-                    <br />
-                    Feels like: {selectedLocation.weather.feelsLike}°F
                   </p>
-                  <p>
-                    Snow depth: {selectedLocation.weather.snowDepthFT} ft
-                    <br />
-                    Wind: {selectedLocation.weather.windSpeed} mph
-                    <br />
-                    Humidity: {selectedLocation.weather.humidity}%
-                  </p>
+                  <p>Wind: {selectedLocation.weather.windSpeed} mph</p>
+                  <p>Humidity: {selectedLocation.weather.humidity}%</p>
                 </>
               ) : (
                 <p>No weather data available.</p>
@@ -113,11 +154,13 @@ export default function Trips() {
             </div>
           </div>
 
-          {/* Map (placed below cards) */}
+          {/* ----- Map Below Cards ----- */}
           <TripsMap
             locations={locations}
             selectedLocation={selectedLocation}
+            liveWeather={liveWeather}
           />
+
         </>
       )}
     </main>

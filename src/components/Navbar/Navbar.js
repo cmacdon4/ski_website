@@ -46,7 +46,6 @@ export default function Navbar() {
         <ul className={styles.nav}>
           <li><NavLink to="/" end className={({ isActive }) => isActive ? styles.active : undefined}>Home</NavLink></li>
           <li><NavLink to="/about" className={({ isActive }) => isActive ? styles.active : undefined}>About</NavLink></li>
-          <li><NavLink to="/team" className={({ isActive }) => isActive ? styles.active : undefined}>The Team</NavLink></li>
           <li><NavLink to="/trips" className={({ isActive }) => isActive ? styles.active : undefined}>Our Trips</NavLink></li>
           <li><NavLink to="/calendar" className={({ isActive }) => (isActive ? styles.active : undefined)}>Calendar</NavLink></li>
           <li><NavLink to="/contact" className={({ isActive }) => isActive ? styles.active : undefined}>Contact</NavLink></li>
