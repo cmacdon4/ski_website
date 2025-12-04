@@ -34,3 +34,13 @@ Feature 4 completes the necessary requirements
 
 ### Notes
 Feature 5 completes the necessary requirements
+
+## [0.4.0] – 2025-12-04
+### Added
+
+- Integrated Instagram Feed viewer on the About page using Elfsight with React-compatible script injection
+- Added Instagram card UI with styled container, heading, and layout constraints
+- Implemented live weather data on Trips page via Parse Weather class, including icons, temperature, wind, humidity, and snow depth
+- Made new Contact form to send an email to my personal email and sent it to the backend too
+- Configured live hosting updates on Vercel, including script handling for external widgets and public asset delivery
+- Deployed updated static assets and ensured compatibility between local development and Vercel production environment

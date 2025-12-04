@@ -23,10 +23,7 @@ Connor MacDonald and Jason Czaplewski
 
 6) Link to pay dues
 
-7) Instagram API integration for an announcements page
-
 8) ND day page
 
-9) Photo Wall / Member Uploads
 
 10) Login via ND Single Sign-On (Google OAuth) — no new passwords.
