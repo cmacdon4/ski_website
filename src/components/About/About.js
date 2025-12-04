@@ -7,6 +7,8 @@ import pyramid from "../../img/Pyramid.png";
 import { getTeamMembers } from "../../models/Team";
 import TeamMemberCard from "../Team/TeamMemberCard";
 
+import InstagramFeed from "./InstagramFeed";
+
 export default function About() {
   const [members, setMembers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -79,6 +81,8 @@ export default function About() {
           </div>
         )}
       </section>
+
+      <InstagramFeed />
     </main>
   );
 }
